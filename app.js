@@ -2,9 +2,10 @@ var mysql = require("mysql");
 
 // First you need to create a connection to the db
 var con = mysql.createConnection({
-  host: "localhost",
-  user: "testuser",
-  password: "testuser"
+  host: "svm-ys3n15-comp6235-temp.ecs.soton.ac.uk",
+  user: "test",
+  password: "test",
+  database: "testdb"
 });
 
 con.connect(function(err){
@@ -14,6 +15,14 @@ con.connect(function(err){
   }
   console.log('Connection established');
 });
+
+con.query('SELECT * FROM employees',function(err,rows){
+  if(err) throw err;
+
+  console.log('Data received from Db:\n');
+  console.log(rows);
+});
+
 
 con.end(function(err) {
   // The connection is terminated gracefully
